@@ -70,7 +70,7 @@ const Login = () => {
           <Input
             label="Email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="upadhaya@example.com"
             value={form.email}
             error={errors.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}

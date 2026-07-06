@@ -74,7 +74,7 @@ const Register = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <Input
             label="Name"
-            placeholder="Jane Runner"
+            placeholder="Messi Sharma Upadhaya"
             value={form.name}
             error={errors.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -82,7 +82,7 @@ const Register = () => {
           <Input
             label="Email"
             type="email"
-            placeholder="you@example.com"
+            placeholder="upadhaya@example.com"
             value={form.email}
             error={errors.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
