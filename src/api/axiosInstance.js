@@ -1,16 +1,4 @@
-// api/axiosInstance.js
-//
-// WHAT: A single, pre-configured Axios instance used by every API file
-//       (authApi, runApi, userApi) instead of importing axios directly.
-// WHY: Keeps base URL, headers, and auth behaviour in one place. If the
-//      backend URL or auth scheme ever changes, this is the only file
-//      that needs to be touched.
-//
-// AUTH STRATEGY: The backend supports both an httpOnly cookie AND a Bearer
-// token in the Authorization header (see backend/middleware/authMiddleware.js).
-// We use the Bearer header approach here because it's simpler to reason
-// about from the frontend and works the same in dev and production
-// regardless of cookie/CORS settings. The token is kept in localStorage.
+
 
 import axios from 'axios';
 
