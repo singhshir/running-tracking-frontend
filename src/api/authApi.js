@@ -27,7 +27,7 @@ export const uploadProfilePhoto = (file) => {
   });
 };
 
-/ POST /api/auth/forgot-password
+//  POST /api/auth/forgot-password
 export const forgotPassword = (email) => axiosInstance.post('/auth/forgot-password', { email });
 
 // PUT /api/auth/reset-password/:token
