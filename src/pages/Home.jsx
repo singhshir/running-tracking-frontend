@@ -1,11 +1,3 @@
-// pages/Home.jsx
-//
-// WHAT: Public marketing/landing page shown at "/" to visitors who
-//       aren't logged in yet — hero, feature highlights, "why us" grid,
-//       about section, and footer.
-// WHY: Every app needs a front door. This lives outside ProtectedRoute so
-//      it's visible without logging in, and links out to /login and
-//      /register for the actual app.
 
 import { Link, Navigate } from 'react-router-dom';
 import {
@@ -13,7 +5,8 @@ import {
   FaMedal,
   FaTrophy,
   FaLock,
-} from 'react-icons/fa';
+} from 'react-icons/fa';   //  🏠👤🔍⚙️📧🏃
+
 import {
   FiTarget,
   FiBarChart2,

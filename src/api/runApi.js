@@ -26,3 +26,6 @@ export const fetchRunById = (id) => axiosInstance.get(`/runs/${id}`);
 
 // DELETE /api/runs/:id
 export const deleteRun = (id) => axiosInstance.delete(`/runs/${id}`);
+
+// GET /api/runs/leaderboard/monthly
+export const fetchMonthlyLeaderboard = () => axiosInstance.get('/runs/leaderboard/monthly');

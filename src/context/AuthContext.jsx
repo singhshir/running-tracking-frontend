@@ -6,14 +6,20 @@
 //      profile page) so it lives here instead of being re-fetched
 //      or passed down through props everywhere.
 
-import { createContext, useEffect, useState } from 'react';
-import { loginUser, logoutUser, registerUser, fetchProfile } from '../api/authApi';
+import { createContext, useEffect, useState } from "react";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  fetchProfile,
+  resetPassword as resetPasswordApi,
+} from "../api/authApi";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [loading, setLoading] = useState(true);
 
   // On first load, if a token exists, try to restore the session by
@@ -21,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   // refreshing the page.
   useEffect(() => {
     const restoreSession = async () => {
-      const storedToken = localStorage.getItem('token');
+      const storedToken = localStorage.getItem("token");
 
       if (!storedToken) {
         setLoading(false);
@@ -33,8 +39,8 @@ export const AuthProvider = ({ children }) => {
         setUser(data.data);
         setToken(storedToken);
       } catch (error) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
       } finally {
         setLoading(false);
       }
@@ -47,24 +53,41 @@ export const AuthProvider = ({ children }) => {
     const { data } = await loginUser({ email, password });
     const { user: loggedInUser, token: newToken } = data.data;
 
-    localStorage.setItem('token', newToken);
-    localStorage.setItem('user', JSON.stringify(loggedInUser));
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(loggedInUser));
     setUser(loggedInUser);
     setToken(newToken);
 
     return loggedInUser;
   };
 
+  const updateUser = (updatedUser) => {
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+    setUser(updatedUser);
+  };
+
   const register = async (payload) => {
     const { data } = await registerUser(payload);
     const { user: newUser, token: newToken } = data.data;
 
-    localStorage.setItem('token', newToken);
-    localStorage.setItem('user', JSON.stringify(newUser));
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(newUser));
     setUser(newUser);
     setToken(newToken);
 
     return newUser;
+  };
+
+  const resetPassword = async (token, password) => {
+    const { data } = await resetPasswordApi(token, password);
+    const { user: resetUser, token: newToken } = data.data;
+
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(resetUser));
+    setUser(resetUser);
+    setToken(newToken);
+
+    return resetUser;
   };
 
   const logout = async () => {
@@ -74,16 +97,11 @@ export const AuthProvider = ({ children }) => {
       // Even if the network call fails, clear local session state so
       // the user isn't stuck "logged in" on the frontend.
     } finally {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       setUser(null);
       setToken(null);
     }
-  };
-
-  const updateUser = (updatedUser) => {
-    localStorage.setItem('user', JSON.stringify(updatedUser));
-    setUser(updatedUser);
   };
 
   return (
@@ -95,8 +113,9 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: Boolean(token),
         login,
         register,
-        logout,
         updateUser,
+        resetPassword,
+        logout,
       }}
     >
       {children}

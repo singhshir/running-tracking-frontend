@@ -27,5 +27,14 @@ export const uploadProfilePhoto = (file) => {
   });
 };
 
+/ POST /api/auth/forgot-password
+export const forgotPassword = (email) => axiosInstance.post('/auth/forgot-password', { email });
+
+// PUT /api/auth/reset-password/:token
+export const resetPassword = (token, password) =>
+  axiosInstance.put(`/auth/reset-password/${token}`, { password });
+
 // POST /api/auth/logout
 export const logoutUser = () => axiosInstance.post('/auth/logout');
+
+

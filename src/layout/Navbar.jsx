@@ -51,6 +51,9 @@ const Navbar = () => {
         <NavLink to="/statistics" className={navLinkClass}>
           Statistics
         </NavLink>
+        <NavLink to="/leaderboard" className={navLinkClass}>
+        Leaderboard
+        </NavLink>
       </nav>
 
       <div className="flex items-center gap-3">

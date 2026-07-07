@@ -4,19 +4,22 @@
 // WHY: Spec calls for both a top navbar (text links) and a left sidebar
 //      (icon shortcuts) — this covers the icon-only, always-visible nav.
 
-import { NavLink } from 'react-router-dom';
-import { FiGrid, FiPlayCircle, FiClock, FiBarChart2 } from 'react-icons/fi';
+import { NavLink } from "react-router-dom";
+import { FiGrid, FiPlayCircle, FiClock, FiBarChart2, FiAward} from "react-icons/fi";
 
 const links = [
-  { to: '/dashboard', icon: FiGrid, label: 'Dashboard' },
-  { to: '/run/start', icon: FiPlayCircle, label: 'Run' },
-  { to: '/history', icon: FiClock, label: 'History' },
-  { to: '/statistics', icon: FiBarChart2, label: 'Stats' },
+  { to: "/dashboard", icon: FiGrid, label: "Dashboard" },
+  { to: "/run/start", icon: FiPlayCircle, label: "Run" },
+  { to: "/history", icon: FiClock, label: "History" },
+  { to: "/statistics", icon: FiBarChart2, label: "Stats" },
+  { to: '/leaderboard', icon: FiAward, label: 'Ranks' },
 ];
 
 const linkClass = ({ isActive }) =>
   `flex flex-col items-center gap-1 rounded-lg px-3 py-3 text-xs transition-colors ${
-    isActive ? 'bg-primary-light text-primary' : 'text-slate-500 hover:text-primary hover:bg-primary-light'
+    isActive
+      ? "bg-primary-light text-primary"
+      : "text-slate-500 hover:text-primary hover:bg-primary-light"
   }`;
 
 const Sidebar = () => {
