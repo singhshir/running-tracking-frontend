@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { FiAward } from 'react-icons/fi';
-import { GiBoot } from 'react-icons/gi';
+import {  GiRunningShoe } from 'react-icons/gi';
 import Loader from '../components/Loader';
 import EmptyState from '../components/EmptyState';
 import { fetchMonthlyLeaderboard } from '../api/runApi';
@@ -24,7 +24,7 @@ const Avatar = ({ name, profileImage, size = 'sm' }) => {
     .join('')
     .toUpperCase();
 
-  const sizeClass = size === 'lg' ? 'h-20 w-20 text-xl' : 'h-9 w-9 text-xs';
+  const sizeClass = size === 'lg' ? 'h-24 w-24 text-2xl' : 'h-9 w-9 text-xs';
 
   return (
     <span
@@ -42,36 +42,41 @@ const Avatar = ({ name, profileImage, size = 'sm' }) => {
 // Big standalone card for #1 — golden boot above the photo, stats below.
 const ChampionCard = ({ entry, highlight }) => (
   <div
-    className={`mb-6 flex flex-col items-center rounded-2xl border bg-gradient-to-b from-primary-light to-surface px-6 py-8 text-center ${
+    className={`mb-6 flex items-center gap-6 rounded-2xl border bg-gradient-to-r from-primary-light to-surface px-6 py-6 ${
       highlight ? 'border-primary' : 'border-border'
     }`}
   >
-    <GiBoot className="mb-2 text-4xl text-yellow-400" title="Golden Boot — #1 this month" />
-
-    <div className="relative">
+    {/* Left: photo */}
+    <div className="relative flex-shrink-0">
       <Avatar name={entry.name} profileImage={entry.profileImage} size="lg" />
       <span className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-surface bg-yellow-400 text-xs font-bold text-slate-900">
         1
       </span>
     </div>
 
-    <p className="mt-4 text-lg font-semibold text-white">{entry.name}</p>
-    <p className="text-xs uppercase tracking-wide text-yellow-400">Runner of the Month</p>
+    {/* Right: details */}
+    <div className="min-w-0 flex-1">
+      <div className="mb-1 flex items-center gap-2">
+        <GiRunningShoe className="text-xl text-yellow-400" title="Golden Boot — #1 this month" />
+        <p className="text-xs font-semibold uppercase tracking-wide text-yellow-400">
+          Runner of the Month
+        </p>
+      </div>
+      <p className="truncate text-lg font-semibold text-white">{entry.name}</p>
 
-    <div className="mt-5 flex items-center gap-6">
-      <div>
-        <p className="text-lg font-bold text-white">{formatDistance(entry.totalDistance)}</p>
-        <p className="text-xs text-slate-400">Distance</p>
-      </div>
-      <div className="h-8 w-px bg-border" />
-      <div>
-        <p className="text-lg font-bold text-white">{entry.totalRuns}</p>
-        <p className="text-xs text-slate-400">Runs</p>
-      </div>
-      <div className="h-8 w-px bg-border" />
-      <div>
-        <p className="text-lg font-bold text-white">{formatPace(entry.averagePace)}</p>
-        <p className="text-xs text-slate-400">Avg Pace</p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
+        <div>
+          <p className="text-base font-bold text-white">{formatDistance(entry.totalDistance)}</p>
+          <p className="text-xs text-slate-400">Distance</p>
+        </div>
+        <div>
+          <p className="text-base font-bold text-white">{entry.totalRuns}</p>
+          <p className="text-xs text-slate-400">Runs</p>
+        </div>
+        <div>
+          <p className="text-base font-bold text-white">{formatPace(entry.averagePace)}</p>
+          <p className="text-xs text-slate-400">Avg Pace</p>
+        </div>
       </div>
     </div>
   </div>
