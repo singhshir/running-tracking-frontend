@@ -1,10 +1,3 @@
-// main.jsx
-//
-// WHAT: The application's entry point — mounts React, and wraps the app
-//       in BrowserRouter (routing), AuthProvider (auth context), and
-//       ToastContainer (global toast notifications).
-// WHY: Anything that needs to be available everywhere (routing, auth
-//      state, toasts) is set up once, here, at the very top of the tree.
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

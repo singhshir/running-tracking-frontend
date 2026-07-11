@@ -1,8 +1,3 @@
-/* Leaflet's own stylesheet is required for the map tiles/markers to
-   render correctly. Imported here so every page that uses MapView
-   automatically gets it without remembering to add a <link> tag.
-   Must come before the @tailwind directives — @import rules have to
-   precede all other CSS statements. */
 @import 'leaflet/dist/leaflet.css';
 
 @tailwind base;
@@ -36,7 +31,7 @@ body {
 /* Small utility for line clamping run notes, etc. */
 .line-clamp-2 {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

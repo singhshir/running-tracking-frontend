@@ -1,11 +1,3 @@
-// hooks/useLocation.js
-//
-// WHAT: Wraps the browser Geolocation API's watchPosition()/getCurrentPosition()
-//       in a small React hook that exposes the current position, an error
-//       (if permission was denied, etc.), and start/stop controls.
-// WHY: Keeps all raw navigator.geolocation calls in one place instead of
-//      scattered across pages. useRunTracker builds on top of this.
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const useLocation = () => {

@@ -1,10 +1,3 @@
-// App.jsx
-//
-// WHAT: Top-level route table for the whole app.
-// WHY: Central place to see every route at a glance — public auth pages,
-//      the protected app shell (DashboardLayout) wrapping all authenticated
-//      pages, and the catch-all 404.
-
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';

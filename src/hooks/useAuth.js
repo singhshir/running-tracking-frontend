@@ -1,9 +1,3 @@
-// hooks/useAuth.js
-//
-// WHAT: Thin convenience hook to read AuthContext.
-// WHY: Lets components write `const { user, login } = useAuth()` instead
-//      of importing useContext + AuthContext everywhere.
-
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
